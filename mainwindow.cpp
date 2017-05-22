@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Oscillatory Neural Network");
+    ui->spinBoxNumLay->setMaximum(1000);
     setDefaults();
 }
 
@@ -18,7 +19,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionSave_triggered()
 {
     QMessageBox::information(this, "test", "triggering save button", QMessageBox::Ok);
-    QFile fsave(QStringLiteral("def.json"));
+    QFile fsave(QDir::currentPath() + "/def.json");//build directory
     if(!fsave.open(QIODevice::WriteOnly))
     {
         qWarning("Couldn't open file.");
@@ -35,16 +36,41 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionLoad_triggered()
 {
     QMessageBox::information(this, "test", "triggering load button", QMessageBox::Ok);
+    QFile fload(QDir::currentPath() + "/def.json");//build directory
+    if(!fload.open(QIODevice::ReadOnly))
+    {
+        qWarning("Couldn't open file.");
+        return;
+    }
+    QByteArray data = fload.readAll();
+    QJsonDocument doc(QJsonDocument::fromJson(data));
+    read(doc.object());
+    set();
+    fload.close();
 }
 
 void MainWindow::setDefaults()
 {
-
+    ui->spinBoxNumNeur->setValue(3);
+    ui->spinBoxNumLay->setValue(300);
+    ui->lineEditTime->setText("10.0");
+    ui->lineEditLimit->setText("1.0");
+    ui->lineEditStep->setText("0.1");
+    ui->lineEditAccur->setText("0.0001");
+    ui->lineEditM1->setText("1.0");
+    ui->lineEditM2->setText("100.0");
 }
 
 void MainWindow::set()
 {
-
+    ui->spinBoxNumNeur->setValue(numNeur_);
+    ui->spinBoxNumLay->setValue(numLay_);
+    ui->lineEditTime->setText(QString("%1").arg(time_));
+    ui->lineEditLimit->setText(QString("%1").arg(limit_));
+    ui->lineEditM1->setText(QString("%1").arg(M1_));
+    ui->lineEditM2->setText(QString("%1").arg(M2_));
+    ui->lineEditStep->setText(QString("%1").arg(step_));
+    ui->lineEditAccur->setText(QString("%1").arg(accur_));
 }
 
 void MainWindow::get()
@@ -54,7 +80,7 @@ void MainWindow::get()
     time_ = ui->lineEditTime->text().toDouble();
     limit_ = ui->lineEditLimit->text().toDouble();
     M1_ = ui->lineEditM1->text().toDouble();
-    M2_ = ui->labelM2->text().toDouble();
+    M2_ = ui->lineEditM2->text().toDouble();
     step_ = ui->lineEditStep->text().toDouble();
     accur_ = ui->lineEditAccur->text().toDouble();
 }
