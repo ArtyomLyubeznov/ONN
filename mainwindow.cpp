@@ -49,6 +49,44 @@ void MainWindow::on_actionLoad_triggered()
     fload.close();
 }
 
+void MainWindow::on_spinBoxNumNeur_valueChanged(int arg1)
+{
+    numNeur = arg1;
+
+    ui->tableWidgetInitValues->setRowCount(numNeur);
+    ui->tableWidgetInitValues->setColumnCount(3);
+    for(int i = 0; i < numNeur; i++)
+        for(int j = 0; j < 3; j++)
+        {
+            auto item = ui->tableWidgetInitValues->item(i, j);
+            if(!item)
+            {
+                item = new QTableWidgetItem();
+                ui->tableWidgetInitValues->setItem(i, j, item);
+            }
+            item->setText("0.1");
+        }
+/*
+    ui->tableWidgetControl->setRowCount(numNeur);
+    ui->tableWidgetControl->setColumnCount(num_neur);
+    for(int i = 0; i < num_neur; i++)
+        for(int j = 0; j < num_neur; j++)
+        {
+            auto item = ui->tableWidgetControl->item(i, j);
+            if(!item)
+            {
+                item = new QTableWidgetItem();
+                ui->tableWidgetControl->setItem(i, j, item);
+            }
+            item->setText(i == j ? "0.0" : "0.5");
+        }*/
+}
+
+void MainWindow::on_pushButtonStart_clicked()
+{
+
+}
+
 void MainWindow::setDefaults()
 {
     ui->spinBoxNumNeur->setValue(3);
@@ -65,12 +103,12 @@ void MainWindow::set()
 {
     ui->spinBoxNumNeur->setValue(numNeur_);
     ui->spinBoxNumLay->setValue(numLay_);
-    ui->lineEditTime->setText(QString("%1").arg(time_));
-    ui->lineEditLimit->setText(QString("%1").arg(limit_));
-    ui->lineEditM1->setText(QString("%1").arg(M1_));
-    ui->lineEditM2->setText(QString("%1").arg(M2_));
-    ui->lineEditStep->setText(QString("%1").arg(step_));
-    ui->lineEditAccur->setText(QString("%1").arg(accur_));
+    ui->lineEditTime->setText(QString::number(time_));
+    ui->lineEditLimit->setText(QString::number(limit_));
+    ui->lineEditM1->setText(QString::number(M1_));
+    ui->lineEditM2->setText(QString::number(M2_));
+    ui->lineEditStep->setText(QString::number(step_));
+    ui->lineEditAccur->setText(QString::number(accur_));
 }
 
 void MainWindow::get()
