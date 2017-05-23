@@ -7,7 +7,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Oscillatory Neural Network");
+    setWindowIcon(QIcon());
+
     ui->spinBoxNumLay->setMaximum(1000);
+
+    ui->actionLoad->setShortcut(QKeySequence::Open);
+    ui->actionLoad->setStatusTip("Load parameters");
+    ui->actionSave->setShortcut(QKeySequence::Save);
+    ui->actionSave->setStatusTip("Save parameters");
+    ui->actionAbout->setStatusTip("About the program");
+
     setDefaults();
 }
 
@@ -49,13 +58,18 @@ void MainWindow::on_actionLoad_triggered()
     fload.close();
 }
 
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "About the program", "");
+}
+
 void MainWindow::on_spinBoxNumNeur_valueChanged(int arg1)
 {
-    numNeur = arg1;
+    numNeur_ = arg1;
 
-    ui->tableWidgetInitValues->setRowCount(numNeur);
+    ui->tableWidgetInitValues->setRowCount(numNeur_);
     ui->tableWidgetInitValues->setColumnCount(3);
-    for(int i = 0; i < numNeur; i++)
+    for(int i = 0; i < numNeur_; i++)
         for(int j = 0; j < 3; j++)
         {
             auto item = ui->tableWidgetInitValues->item(i, j);
@@ -66,20 +80,6 @@ void MainWindow::on_spinBoxNumNeur_valueChanged(int arg1)
             }
             item->setText("0.1");
         }
-/*
-    ui->tableWidgetControl->setRowCount(numNeur);
-    ui->tableWidgetControl->setColumnCount(num_neur);
-    for(int i = 0; i < num_neur; i++)
-        for(int j = 0; j < num_neur; j++)
-        {
-            auto item = ui->tableWidgetControl->item(i, j);
-            if(!item)
-            {
-                item = new QTableWidgetItem();
-                ui->tableWidgetControl->setItem(i, j, item);
-            }
-            item->setText(i == j ? "0.0" : "0.5");
-        }*/
 }
 
 void MainWindow::on_pushButtonStart_clicked()

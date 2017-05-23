@@ -17,7 +17,8 @@ public:
 
 private slots:
     void on_actionSave_triggered();//сохранить параметры в json-файл
-    void on_actionLoad_triggered();//загрузить параметры из json-файла
+    void on_actionLoad_triggered();//загрузить параметры из json-файла    
+    void on_actionAbout_triggered();//справка о программе
 
     void on_spinBoxNumNeur_valueChanged(int arg1);//изменить размеры таблиц по кол-ву нейронов
 
@@ -62,7 +63,6 @@ private:
     QVector<double> U_;//задается 0-е значение
     QVector<QVector<double>> X_;//задается 0-й слой
 };
-//QSettings
 //QCustomPlot::rescaleAxes - вместо setRange
 
 #endif // MAINWINDOW_H
