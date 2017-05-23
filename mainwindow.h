@@ -16,11 +16,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionSave_triggered();//сохранить параметры в json-файл
-    void on_actionLoad_triggered();//загрузить параметры из json-файла    
+    void on_actionSave_triggered(); //сохранить параметры в json-файл
+    void on_actionLoad_triggered(); //загрузить параметры из json-файла
     void on_actionAbout_triggered();//справка о программе
 
-    void on_spinBoxNumNeur_valueChanged(int arg1);//изменить размеры таблиц по кол-ву нейронов
+    void on_spinBoxNumNeur_valueChanged(int arg1);//изменить размеры первой таблицы по количеству нейронов
+    void on_spinBoxNumLay_valueChanged(int arg1); //изменить размеры второй таблицы по количеству слоёв
 
     void on_pushButtonStart_clicked();//запустить всё (мб в дальнейшем разделить вычисления и построения)
 
@@ -29,7 +30,7 @@ private:
     void set();//установить параметры
     void get();//получить параметры
     void write(QJsonObject &json) const;//записать параметры в объект json
-    void read(const QJsonObject &json);//считать параметры из объекта json
+    void read(const QJsonObject &json); //считать параметры из объекта json
 
     void calcX();
     void calcU();
@@ -38,9 +39,9 @@ private:
     void calcP();
     void calcG();
 
-    void calc();//вычислить всё
+    void calc(); //вычислить всё
     void print();//вывести таблицы
-    void plot();//построить графики (мб потом отдельно каждый)
+    void plot(); //построить графики (мб потом отдельно каждый)
 
 private:
     Ui::MainWindow *ui;

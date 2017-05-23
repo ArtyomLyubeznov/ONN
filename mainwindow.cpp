@@ -60,15 +60,15 @@ void MainWindow::on_actionLoad_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "About the program", "");
+    QMessageBox::about(this, "About the program", windowTitle() + QString("1.0 based on Neural Network 1.0"));
 }
 
 void MainWindow::on_spinBoxNumNeur_valueChanged(int arg1)
 {
     numNeur_ = arg1;
 
-    ui->tableWidgetInitValues->setRowCount(numNeur_);
     ui->tableWidgetInitValues->setColumnCount(3);
+    ui->tableWidgetInitValues->setRowCount(numNeur_);
     for(int i = 0; i < numNeur_; i++)
         for(int j = 0; j < 3; j++)
         {
@@ -78,13 +78,33 @@ void MainWindow::on_spinBoxNumNeur_valueChanged(int arg1)
                 item = new QTableWidgetItem();
                 ui->tableWidgetInitValues->setItem(i, j, item);
             }
-            item->setText("0.1");
+            item->setText("0.1");//change to optimal
         }
+}
+
+void MainWindow::on_spinBoxNumLay_valueChanged(int arg1)
+{
+    numLay_ = arg1;
+
+    ui->tableWidgetControl->setColumnCount(1);
+    ui->tableWidgetControl->setRowCount(numLay_);
+    for(int i = 0; i < numLay_; i++)
+    {
+        auto item = ui->tableWidgetControl->item(i, 0);
+        if(!item)
+        {
+            item = new QTableWidgetItem();
+            ui->tableWidgetControl->setItem(i, 0, item);
+        }
+        item->setText("0.1");//change to optimal
+    }
 }
 
 void MainWindow::on_pushButtonStart_clicked()
 {
-
+    ui->textBrowserLog->clear();
+    get();
+    dt_ = time_ / numLay_;
 }
 
 void MainWindow::setDefaults()
@@ -113,7 +133,6 @@ void MainWindow::set()
 
 void MainWindow::get()
 {
-    numNeur_ = ui->spinBoxNumNeur->value();//auto update when changing?
     numLay_ = ui->spinBoxNumLay->value();
     time_ = ui->lineEditTime->text().toDouble();
     limit_ = ui->lineEditLimit->text().toDouble();
@@ -145,4 +164,8 @@ void MainWindow::read(const QJsonObject &json)
     M2_ = json["m2"].toDouble();
     step_ = json["step"].toDouble();
     accur_ = json["accur"].toDouble();
+}
+
+void MainWindow::calc()
+{
 }

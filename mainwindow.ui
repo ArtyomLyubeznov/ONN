@@ -44,33 +44,33 @@
        <attribute name="title">
         <string>Параметры</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <layout class="QGridLayout" name="gridLayoutParams">
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEditStep"/>
+          <item row="5" column="2">
+           <widget class="QLabel" name="labelK0">
+            <property name="text">
+             <string>K0</string>
+            </property>
+           </widget>
           </item>
-          <item row="4" column="0" colspan="2">
+          <item row="4" column="0">
            <widget class="QLabel" name="labelX">
             <property name="text">
              <string>Иксы</string>
             </property>
            </widget>
           </item>
+          <item row="5" column="3">
+           <widget class="QLineEdit" name="lineEditK0"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEditStep"/>
+          </item>
           <item row="4" column="2" colspan="2">
            <widget class="QLabel" name="labelW">
             <property name="text">
              <string>Управление</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2" colspan="2">
-           <widget class="QTableWidget" name="tableWidgetControl"/>
-          </item>
-          <item row="6" column="0" colspan="4">
-           <widget class="QPushButton" name="pushButtonStart">
-            <property name="text">
-             <string>Start</string>
             </property>
            </widget>
           </item>
@@ -95,36 +95,29 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBoxNumLay"/>
-          </item>
-          <item row="3" column="2">
-           <widget class="QLabel" name="labelM2">
+          <item row="8" column="0" colspan="4">
+           <widget class="QPushButton" name="pushButtonStart">
             <property name="text">
-             <string>М2</string>
+             <string>Start</string>
             </property>
            </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEditM1"/>
           </item>
           <item row="3" column="3">
            <widget class="QLineEdit" name="lineEditM2"/>
           </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxNumLay"/>
+          </item>
           <item row="0" column="3">
            <widget class="QLineEdit" name="lineEditTime"/>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelA">
-            <property name="text">
-             <string>Шаг градиентного спуска</string>
-            </property>
-           </widget>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditM1"/>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelM1">
+          <item row="3" column="2">
+           <widget class="QLabel" name="labelM2">
             <property name="text">
-             <string>М1</string>
+             <string>M2</string>
             </property>
            </widget>
           </item>
@@ -138,8 +131,25 @@
           <item row="2" column="3">
            <widget class="QLineEdit" name="lineEditAccur"/>
           </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelA">
+            <property name="text">
+             <string>Шаг градиентного спуска</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelM1">
+            <property name="text">
+             <string>M1</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QSpinBox" name="spinBoxNumNeur"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="lineEditLimit"/>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelN">
@@ -148,10 +158,26 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="3">
-           <widget class="QLineEdit" name="lineEditLimit"/>
+          <item row="6" column="3">
+           <widget class="QLineEdit" name="lineEditU0"/>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="6" column="2">
+           <widget class="QLabel" name="labelU0">
+            <property name="text">
+             <string>U0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2" colspan="2">
+           <widget class="QTableWidget" name="tableWidgetControl">
+            <column>
+             <property name="text">
+              <string>U</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="5" column="0" rowspan="3" colspan="2">
            <widget class="QTableWidget" name="tableWidgetInitValues">
             <column>
              <property name="text">
