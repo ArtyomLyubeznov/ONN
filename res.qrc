@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>res/nn1.ico</file>
+    </qresource>
+</RCC>

@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Oscillatory Neural Network");
-    setWindowIcon(QIcon());
+    setWindowIcon(QIcon(":/res/nn1.ico"));
 
     ui->spinBoxNumLay->setMaximum(1000);
 
